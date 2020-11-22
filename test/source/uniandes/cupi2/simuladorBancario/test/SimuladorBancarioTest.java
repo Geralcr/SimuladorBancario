@@ -281,6 +281,97 @@ public class SimuladorBancarioTest
     }
     
     @Test
+    public void testGeral() {
+    	
+    	int consecutivo = -1;
+    	try
+    	{
+    	setupEscenario3();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.metodo1(10);
+    	double sim1 = cuenta.metodo2();
+    	cuenta.consignarCuentaAhorros(1000000);
+    	cuenta.invertirCDT(50000, "1");
+    	cuenta.metodo1(4);
+    	cuenta.cerrarCDT();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.retirarCuentaAhorros(500000);
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.invertirCDT(400000, "5");
+    	cuenta.metodo1(5);
+    	consecutivo = cuenta.metodo3(0, 0);
+    	}
+    	catch (Exception e)
+    	{
+    	    e.printStackTrace();
+    	}
+    	Boolean test = consecutivo == 1 ? true : false;
+    	assertEquals( "consecutivo esperado:", 1, consecutivo , 5 );  
+    	
+    }
+    
+    @Test
+    public void testChris()
+    {
+    	
+    	int consecutivo = -1;
+    	try
+    	{
+    	setupEscenario3();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.metodo1(10);
+    	double sim1 = cuenta.metodo2();
+    	cuenta.consignarCuentaAhorros(1000000);
+    	cuenta.invertirCDT(50000, "1");
+    	cuenta.metodo1(4);
+    	cuenta.cerrarCDT();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.retirarCuentaAhorros(500000);
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.invertirCDT(400000, "5");
+    	cuenta.metodo1(5);
+    	consecutivo = cuenta.metodo3(1, 0);
+    	}
+    	catch (Exception e)
+    	{
+    	    e.printStackTrace();
+    	}
+
+    	Boolean test = consecutivo == 14 ? true : false;
+    	assertEquals( "consecutivo esperado:", 14, consecutivo , 5 );  
+    }
+    
+    @Test 
+    public void testJade()
+    {
+    	int consecutivo = -1;
+    	try
+    	{
+    	setupEscenario3();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.metodo1(10);
+    	double sim1 = cuenta.metodo2();
+    	cuenta.consignarCuentaAhorros(1000000);
+    	cuenta.invertirCDT(50000, "1");
+    	cuenta.metodo1(4);
+    	cuenta.cerrarCDT();
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.retirarCuentaAhorros(500000);
+    	cuenta.avanzarMesSimulacion();
+    	cuenta.invertirCDT(400000, "5");
+    	cuenta.metodo1(5);
+    	cuenta.cerrarCDT();
+    	consecutivo = cuenta.metodo3(1, 2);
+    	}
+    	catch (Exception e)
+    	{
+    	    e.printStackTrace();
+    	}
+    	Boolean test = consecutivo == 27 ? true : false;
+    	assertEquals( "consecutivo esperado:", 27, consecutivo , 5 );    	
+    }
+    
+    @Test
     public void testPunto2a()
     {
     	setupEscenario9();

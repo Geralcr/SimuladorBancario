@@ -243,15 +243,15 @@ public class SimuladorBancario
         ahorros.actualizarSaldoPorPasoMes( );
         verificarInvariante();
         
+        if (valorCDT != 0)
+        {
+        	addTransaccion(	new Transaccion(consecutivoActual, valorCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
+        }
         if(valorAhorros != 0)
         {
         	addTransaccion(	new Transaccion(consecutivoActual, valorAhorros , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS ));
         }
         
-		if (valorCDT != 0)
-		{
-			addTransaccion(	new Transaccion(consecutivoActual, valorCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
-		}
     }
     
     /**
@@ -264,7 +264,6 @@ public class SimuladorBancario
     	for(int i = 1 ; i <= pMeses ; i++)
     	{
     		avanzarMesSimulacion();
-    		System.out.print("mes: " + i);
     	}
     	verificarInvariante();
     }
@@ -317,6 +316,7 @@ public class SimuladorBancario
     	ahorros.cerrarCuenta();
     	interesGenerado = 0;
     	mesActual = 1;
+    	consecutivoActual = 1;
     	transacciones.clear();
         return respuesta;
     }
