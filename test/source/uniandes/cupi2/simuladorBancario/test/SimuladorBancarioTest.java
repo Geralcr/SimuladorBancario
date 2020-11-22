@@ -99,14 +99,14 @@ public class SimuladorBancarioTest
 		}
     }
     
-    private void setupEscenario10()
+    public void setupEscenario10()
     {
     	setupEscenario2( );
     	try {
 			cuenta.invertirCDT(500000, "2");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
     	cuenta.retirarCuentaAhorros(200000);
     	

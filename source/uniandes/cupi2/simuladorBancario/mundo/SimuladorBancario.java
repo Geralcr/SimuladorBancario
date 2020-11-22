@@ -261,13 +261,11 @@ public class SimuladorBancario
      */
     public void metodo1( int pMeses )
     {
-    	for(int i = mesActual ; i <= pMeses ; i++)
+    	for(int i = 1 ; i <= pMeses ; i++)
     	{
     		avanzarMesSimulacion();
+    		System.out.print("mes: " + i);
     	}
-    	
-    	mesActual += pMeses;
-    	ahorros.actualizarSaldoMeses(pMeses);
     	verificarInvariante();
     }
     
