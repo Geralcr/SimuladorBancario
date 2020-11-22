@@ -152,11 +152,11 @@ public class SimuladorBancario
     /*
      * Retorna transacciones
      */
-    
     public ArrayList<Transaccion> darTransacciones()
     {
     	return transacciones;
     }
+    
     /**
      * Calcula el saldo total de las cuentas del cliente.
      * @return Saldo total de las cuentas del cliente.
@@ -275,6 +275,7 @@ public class SimuladorBancario
     	
     	verificarInvariante();
     }
+    
     /**
      * Cierra el CDT, pasando el saldo a la cuenta corriente. <br>
      * <b>pre: </b> La cuenta corriente y el CDT han sido inicializados. <br>
@@ -294,6 +295,7 @@ public class SimuladorBancario
 		addTransaccion(	new Transaccion(consecutivoActual, valorCierreCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE ));
 
     }
+    
     /**
      * Retrira el saldo total la cuenta de ahorros, pasandolo a la cuenta corriente. <br>
      * <b>pre: </b> La cuenta corriente y el la cuenta de ahorros han sido inicializados. <br>
@@ -338,6 +340,7 @@ public class SimuladorBancario
 		consecutivoActual ++;
 		System.out.println(Integer.toString(nuevaTransaccion.getConsecutivo()) + " " + nuevaTransaccion.getTipoTransaccion() +" " + nuevaTransaccion.getTipoCuenta() + " " + Double.toString(nuevaTransaccion.getValor() ) );
 	}
+	
 	/*
 	 * Metodos para validar
 	 */
@@ -358,6 +361,7 @@ public class SimuladorBancario
 	{
 		return (ahorros.darSaldo( ) + inversion.calcularValorPresente( mesActual )) < INVERSION_MAXIMO;
 	}
+	
 	/*
 	 * Metodo invariante
 	 */
