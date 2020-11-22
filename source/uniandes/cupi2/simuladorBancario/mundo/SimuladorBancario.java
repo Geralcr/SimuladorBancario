@@ -12,6 +12,7 @@ package uniandes.cupi2.simuladorBancario.mundo;
 
 import java.util.ArrayList;
 
+
 /**
  * Clase que representa el simulador bancario para las tres cuentas de un cliente.
  */
@@ -202,7 +203,6 @@ public class SimuladorBancario
     	verificarInvariante();
         ahorros.consignarMonto( pMonto );
 		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS ));
-
     }
 
     /**
@@ -216,7 +216,6 @@ public class SimuladorBancario
     	verificarInvariante();
         corriente.retirarMonto( pMonto );
 		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.CORRIENTE ));
-
     }
 
     /**
@@ -229,7 +228,6 @@ public class SimuladorBancario
     	verificarInvariante();
         ahorros.retirarMonto( pMonto );
 		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.AHORROS ));
-
     }
     
 
@@ -263,16 +261,13 @@ public class SimuladorBancario
      */
     public void metodo1( int pMeses )
     {
-    	
     	for(int i = mesActual ; i <= pMeses ; i++)
     	{
     		avanzarMesSimulacion();
-    			
     	}
     	
     	mesActual += pMeses;
     	ahorros.actualizarSaldoMeses(pMeses);
-    	
     	verificarInvariante();
     }
     
@@ -303,7 +298,6 @@ public class SimuladorBancario
      */
     public void pasarAhorrosToCorriente()
     {
-    	//verificarInvariante();
     	double cantidad = ahorros.darSaldo();
     	ahorros.cerrarCuenta(); 
     	corriente.consignarMonto(cantidad);
@@ -328,10 +322,27 @@ public class SimuladorBancario
     	transacciones.clear();
         return respuesta;
     }
-
+    
+    /*
+     * Reto Final
+     */
 	public int metodo3(int pTipo, int pCuenta) 
 	{
-		return 0;
+		int mayorConsecutivo = 0;
+		double mayorValor = 0.0;
+
+        for( Transaccion actual : transacciones )
+        {
+        	if(actual.getTipoTransaccion().ordinal() == pTipo && actual.getTipoCuenta().ordinal() == pCuenta) 
+        	{
+    			if(actual.getValor() > mayorValor)
+    			{
+    				mayorValor = actual.getValor();
+    				mayorConsecutivo = actual.getConsecutivo();
+        		}
+        	}
+        }
+		return mayorConsecutivo;
 	}
 	
 	public void addTransaccion(Transaccion nuevaTransaccion)

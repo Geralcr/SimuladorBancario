@@ -4,8 +4,9 @@ public class Transaccion {
 	
 	public enum TipoTransaccion
 	{
-	  SALIDA,
-	  ENTRADA
+	  ENTRADA,
+	  SALIDA
+	  
 	}
 	public enum TipoCuenta
 	{
