@@ -177,9 +177,19 @@ public class SimuladorBancario
     public void invertirCDT( double pMonto, String pInteresMensual ) throws Exception
     {
     	verificarInvariante();
-		double pInteres = Double.parseDouble(pInteresMensual) / 100.0;
-		inversion.invertir( pMonto, pInteres, mesActual );
-		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
+    	
+    	try 
+    	{
+    		String valor = pInteresMensual.replace(",", ".");
+    		double pInteres = Double.parseDouble(valor) / 100.0;
+    		inversion.invertir( pMonto, pInteres, mesActual );
+    		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
+		}
+    	catch(Exception e)
+    	{
+			System.out.println("ERROR: EL VALOR INGRESADO DEBE SER NUMÉRICO");
+    	}
+    	
     }
 
     /**
@@ -347,7 +357,7 @@ public class SimuladorBancario
 	{
 		transacciones.add(nuevaTransaccion);
 		consecutivoActual ++;
-		System.out.println(Integer.toString(nuevaTransaccion.getConsecutivo()) + " " + nuevaTransaccion.getTipoTransaccion() +" " + nuevaTransaccion.getTipoCuenta() + " " + Double.toString(nuevaTransaccion.getValor() ) );
+		//System.out.println(Integer.toString(nuevaTransaccion.getConsecutivo()) + " " + nuevaTransaccion.getTipoTransaccion() +" " + nuevaTransaccion.getTipoCuenta() + " " + Double.toString(nuevaTransaccion.getValor() ) );
 	}
 	
 	/*
