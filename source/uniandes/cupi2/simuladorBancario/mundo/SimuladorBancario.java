@@ -184,7 +184,7 @@ public class SimuladorBancario
     		String valor = pInteresMensual.replace(",", ".");
     		double pInteres = Double.parseDouble(valor) / 100.0;
     		inversion.invertir( pMonto, pInteres, mesActual );
-    		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
+    		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT , "Invertir CDT" ));
 		}
     	catch(Exception e)
     	{
@@ -201,7 +201,7 @@ public class SimuladorBancario
     public void consignarCuentaCorriente( double pMonto )
     {
         corriente.consignarMonto( pMonto );
-		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE ));
+		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE , "Consignar C. Corriente"));
     }
 
     /**
@@ -213,7 +213,7 @@ public class SimuladorBancario
     {
     	verificarInvariante();
         ahorros.consignarMonto( pMonto );
-		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS ));
+		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS , "Consignar C. Ahorros"));
     }
 
     /**
@@ -226,7 +226,7 @@ public class SimuladorBancario
     {
     	verificarInvariante();
         corriente.retirarMonto( pMonto );
-		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.CORRIENTE ));
+		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.CORRIENTE , "Retirar C. Corriente"));
     }
 
     /**
@@ -238,7 +238,7 @@ public class SimuladorBancario
     {
     	verificarInvariante();
         ahorros.retirarMonto( pMonto );
-		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.AHORROS ));
+		addTransaccion(	new Transaccion(consecutivoActual, pMonto, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.AHORROS , "Retirar C. Ahorros"));
     }
     
 
@@ -256,11 +256,11 @@ public class SimuladorBancario
         
         if (valorCDT != 0)
         {
-        	addTransaccion(	new Transaccion(consecutivoActual, valorCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT ));
+        	addTransaccion(	new Transaccion(consecutivoActual, valorCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CDT, "Interes CDT" ));
         }
         if(valorAhorros != 0)
         {
-        	addTransaccion(	new Transaccion(consecutivoActual, valorAhorros , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS ));
+        	addTransaccion(	new Transaccion(consecutivoActual, valorAhorros , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.AHORROS, "Interes C. Ahorros"));
         }
         
     }
@@ -294,8 +294,8 @@ public class SimuladorBancario
         /*
          * Añadir al array transacciones
          */
-		addTransaccion(	new Transaccion(consecutivoActual, valorCierreCDT, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.CDT ));
-		addTransaccion(	new Transaccion(consecutivoActual, valorCierreCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE ));
+		addTransaccion(	new Transaccion(consecutivoActual, valorCierreCDT, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.CDT, "Cerrar CDT" ));
+		addTransaccion(	new Transaccion(consecutivoActual, valorCierreCDT , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE, "Consignar C. Corriente" ));
 
     }
     
@@ -310,8 +310,8 @@ public class SimuladorBancario
     	ahorros.cerrarCuenta(); 
     	corriente.consignarMonto(cantidad);
     	
-    	addTransaccion(	new Transaccion(consecutivoActual, cantidad, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.AHORROS ));
-		addTransaccion(	new Transaccion(consecutivoActual, cantidad , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE ));
+    	addTransaccion(	new Transaccion(consecutivoActual, cantidad, Transaccion.TipoTransaccion.SALIDA , Transaccion.TipoCuenta.AHORROS, "Retirar C. Ahorros" ));
+		addTransaccion(	new Transaccion(consecutivoActual, cantidad , Transaccion.TipoTransaccion.ENTRADA , Transaccion.TipoCuenta.CORRIENTE, "Consignar C. Corriente" ));
     }
 
 

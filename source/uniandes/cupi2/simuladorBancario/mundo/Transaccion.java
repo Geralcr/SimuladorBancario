@@ -20,14 +20,16 @@ public class Transaccion {
 	
 	private int consecutivo;
 	private double valor;
+	private String descripcion;
 	
-	public Transaccion(int pconsecutivo, double pValor,TipoTransaccion pTTransaccion, TipoCuenta pTCuenta) 
+	public Transaccion(int pconsecutivo, double pValor,TipoTransaccion pTTransaccion, TipoCuenta pTCuenta, String pdescripcion) 
 	{
 		// TODO Auto-generated constructor stub
 		consecutivo = pconsecutivo;
 		valor = pValor;
 		tipoTransaccion = pTTransaccion;
 		tipoCuenta = pTCuenta;
+		descripcion = pconsecutivo + " " + pdescripcion;
 	}
 	
 	public int getConsecutivo()
@@ -52,8 +54,8 @@ public class Transaccion {
 	
 	public String toString()
     {
-        String representacion = consecutivo + " " + tipoTransaccion +" " + tipoCuenta ;
-        return representacion;
+        //String representacion = consecutivo + " " + tipoTransaccion +" " + tipoCuenta ;
+        return descripcion;
     }
 	
 }
