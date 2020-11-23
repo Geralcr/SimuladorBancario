@@ -13,6 +13,7 @@ package uniandes.cupi2.simuladorBancario.interfaz;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -157,7 +158,8 @@ public class InterfazSimulador extends JFrame
         panelCorriente.actualizarSaldoCorriente( formatearValor( cuenta.darCuentaCorriente( ).darSaldo( ) ) );
         panelAhorros.actualizarSaldoAhorros( formatearValor( cuenta.darCuentaAhorros( ).darSaldo( ) ) + "   [" + ( cuenta.darCuentaAhorros( ).darInteresMensual( ) * 100 ) + "%]" );
         panelCDT.actualizarSaldoCDT( formatearValor( cuenta.darCDT( ).calcularValorPresente( cuenta.darMesActual( ) ) ) + "   [" + ( cuenta.darCDT( ).darInteresMensual( ) * 100 ) + "%]" );
-
+        ArrayList<Transaccion> lista = cuenta.darTransacciones() ;
+        panelTransacciones.refrescar(lista);
     }
 
     /**

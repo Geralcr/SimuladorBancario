@@ -50,9 +50,9 @@ public class Transaccion {
 		return tipoCuenta;
 	}
 	
-	public String toString(String Valor )
+	public String toString()
     {
-        String representacion = Valor + tipoCuenta.toString() ;
+        String representacion = consecutivo + " " + tipoTransaccion +" " + tipoCuenta ;
         return representacion;
     }
 	

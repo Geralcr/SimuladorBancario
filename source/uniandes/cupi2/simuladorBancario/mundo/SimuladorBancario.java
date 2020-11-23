@@ -155,6 +155,7 @@ public class SimuladorBancario
      */
     public ArrayList<Transaccion> darTransacciones()
     {
+    	
     	return transacciones;
     }
     
